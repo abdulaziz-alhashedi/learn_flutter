@@ -221,6 +221,7 @@ class GuessInput extends StatelessWidget {
 // }
 
 class Tile extends StatelessWidget {
+  // const Tile(required this.letter, required hitType, {super.key});
   const Tile(this.letter, this.hitType, {super.key});
 
   final String letter;
@@ -228,13 +229,15 @@ class Tile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 60,
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 500),
+      curve: Curves.bounceIn,
       height: 60,
+      width: 60,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade300),
         color: switch (hitType) {
-          HitType.hit => Colors.green,
+          HitType.hit => Colors.blue,
           HitType.partial => Colors.yellow,
           HitType.miss => Colors.grey,
           _ => Colors.white,
