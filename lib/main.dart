@@ -27,36 +27,132 @@ class MainApp extends StatelessWidget {
 }
 
 class GamePage extends StatelessWidget {
-  GamePage({super.key});
-  // This object is part of the game.dart file.
-  // It manages wordle logic, and is outside the scope of this tutorial.
   final Game _game = Game();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Replace with screen contents
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         spacing: 5.0,
         children: [
-          for (var guess in _game.guesses) ...[
+          for (var guess in _game.guesses)
             Row(
               spacing: 5.0,
               children: [
-                 for (var letter in guess)
-                    Tile(letter.char, letter.type),
+                for (var letter in guess) Tile(letter.char, letter.type),
               ],
             ),
-          ],
-          // Add children next.
+          GuessInput(
+            onSubmitGuess: (String guess) {
+              print(guess); // Temporary
+            }
+          ),
         ],
       ),
     );
-
-    return Container();
   }
 }
+
+
+class GuessInput extends StatelessWidget {
+  GuessInput({super.key, required this.onSubmitGuess});
+
+  final void Function(String) onSubmitGuess;
+
+  final TextEditingController _textEditingController = TextEditingController();
+
+  final FocusNode _focusNode = FocusNode();
+
+  void _onSubmit() {
+    onSubmitGuess(_textEditingController.text);
+    _textEditingController.clear();
+    _focusNode.requestFocus();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              maxLength: 5,
+              focusNode: _focusNode,
+              autofocus: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(35)),
+                ),
+              ),
+              controller: _textEditingController,
+              onSubmitted: (String value) {
+                _onSubmit();
+              },
+            ),
+          ),
+        ),
+        IconButton(
+          padding: EdgeInsets.zero,
+          icon: Icon(Icons.arrow_circle_up),
+          onPressed: _onSubmit,
+        ),
+      ],
+    );
+  }
+}
+
+// class GuessInput extends StatelessWidget {
+//   GuessInput({super.key, required this.onSubmitGuess});
+
+//   final void Function(String) onSubmitGuess;
+
+//   final TextEditingController _textEditingController = TextEditingController();
+  
+//   final FocusNode _focusNode = FocusNode();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         Expanded(
+//           child: Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: TextField(
+//               maxLength: 5,
+//               decoration: const InputDecoration(
+//                 border: OutlineInputBorder(
+//                   borderRadius: BorderRadius.all(Radius.circular(35)),
+//                 ),
+//               ),
+//               controller: _textEditingController,
+//               autofocus: true,
+//               focusNode: _focusNode, 
+//                onSubmitted: (String input) { 
+//                 print(_textEditingController.text); 
+//                 _textEditingController.clear();
+//                 _focusNode.requestFocus();
+//               }
+//             ),
+//           ),
+//         ),
+
+//         IconButton(
+//           padding: EdgeInsets.zero,
+//           icon: Icon(Icons.arrow_circle_up),
+//           onPressed: () {
+//             onSubmitGuess(_textEditingController.text.trim());
+//             _textEditingController.clear();
+//             _focusNode.requestFocus();
+//           },
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+
 
 
 // class MainApp extends StatelessWidget {
