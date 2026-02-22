@@ -239,7 +239,7 @@ class Tile extends StatelessWidget {
         color: switch (hitType) {
           HitType.hit => Colors.blue,
           HitType.partial => Colors.yellow,
-          HitType.miss => Colors.grey,
+          HitType.miss => Colors.green,
           _ => Colors.white,
         },
       ),
