@@ -16,8 +16,8 @@ class MainApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Align(
-            alignment: Alignment.centerLeft,
-            child: Text('Birdle'),
+            alignment: Alignment.center,
+            child: Text('أسماء الله الحسنى'),
           ),
         ),
         body: Center(child: GamePage()),

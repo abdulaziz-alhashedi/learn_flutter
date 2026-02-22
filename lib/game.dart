@@ -8,7 +8,7 @@ enum HitType { none, hit, partial, miss, removed }
 
 typedef Letter = ({String char, HitType type});
 
-const legalWords = <String>["aback", "abase", "abate", "abbey", "abbot"];
+const legalWords = <String>["عزيز", "abase", "abate", "abbey", "abbot"];
 
 /// Legal guesses minus legal wordles
 const legalGuesses = <String>[
@@ -22,6 +22,28 @@ const legalGuesses = <String>[
   "abled",
   "abode",
   "abort",
+  "عزيز",
+  "حميد",
+  "مجيد",
+  "حقير",
+  "كريم",
+  "لطيف",
+  "ودود",
+  "جميل",
+  "كبير",
+  "قوي",
+  "غني",
+  "خالق",
+  "فاطر",
+  "رازق",
+  "مالك",
+  "ملك",
+  "رب",
+  "إله",
+  "واحد",
+  "أحد",
+  "صمد",
+  
 ];
 
 /// This class holds game state for a single round of Bulls and Cows,
